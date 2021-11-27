@@ -16,7 +16,7 @@
 $router->get('/', function () use ($router) {
     //return $router->app->version();
     return response()->json([
-        "message" => "RG Inventary",
+        "message" => "RG Inventory",
         "version" => 0.1
     ]);
 });
