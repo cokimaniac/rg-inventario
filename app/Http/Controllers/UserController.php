@@ -33,9 +33,15 @@ class UserController extends Controller
         $data = $request->json()->all();
         $user = User::where("email", $data["email"])->first();
         if ($user && Hash::check($data["password"], $user->password)) {
-            return response()->json($user);
+            return response()->json([
+                "isOk" => TRUE,
+                "api_token" => $user->api_token
+            ]);
         }
-        return response()->json(["error" => "Wrong authentication credentials"], 400);
+        return response()->json([
+            "message" => "Wrong authentication credentials",
+            "isOk" => FALSE
+        ], 400);
     }
 
     /**
