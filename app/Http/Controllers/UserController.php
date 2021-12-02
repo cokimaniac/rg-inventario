@@ -21,7 +21,10 @@ class UserController extends Controller
             "api_token" => Str::random(60)
         ]);
         $user->save();
-        return response()->json($user, 201);
+        return response()->json([
+            "isOk" => true,
+            "user" => $user
+        ], 201);
     }
 
     public function list () {
